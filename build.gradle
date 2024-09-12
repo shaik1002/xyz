@@ -16,6 +16,9 @@ repositories {
     maven {
         url "https://maven.google.com"
     }
+    maven {
+        url "https://repo.spring.io/libs-snapshot"
+    }
     jcenter()
 }
 
@@ -25,7 +28,7 @@ targetCompatibility = 1.8
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
