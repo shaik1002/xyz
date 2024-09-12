@@ -90,6 +90,9 @@ object TodoApp : BuildType({
 
 object TodoImage : BuildType({
     name = "TodoImage"
+    vcs {
+        root(DslContext.settingsRoot)
+    }
     steps {
         dockerCommand {
             commandType = build {
