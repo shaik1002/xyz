@@ -3,7 +3,6 @@ import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
-
 /*
 The settings script is an entry point for defining a TeamCity
 project hierarchy. The script should contain a single call to the
@@ -29,73 +28,47 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2024.07"
 
 project {
-
     subProject(TodoBackend)
 }
 
-
 object TodoBackend : Project({
     name = "TodoBackend"
-
-    buildType(Test2)
-    buildType(TestReport)
-    buildType(TodoApp)
     buildType(Test1)
+    buildType(TestReport)
+    buildType(Test2)
+    buildType(TodoApp)
     buildType(TodoImage)
 })
 
 object Test1 : BuildType({
     name = "Test1"
 
-    vcs {
-        cleanCheckout = true
-    }
-
     steps {
         gradle {
             tasks = "test"
             buildFile = "build.gradle"
         }
     }
-
 })
 
 object Test2 : BuildType({
     name = "Test2"
-
-    vcs {
-        cleanCheckout = true
-    }
-
     steps {
         gradle {
             tasks = "test"
             buildFile = "build.gradle"
         }
     }
-
 })
 
 object TestReport : BuildType({
     name = "TestReport"
-
     type = BuildTypeSettings.Type.COMPOSITE
-
-    vcs {
-        showDependenciesChanges = true
-    }
-
 })
 
 object TodoApp : BuildType({
     name = "TodoApp"
-
     artifactRules = "build/libs/todo.jar"
-
-    vcs {
-        cleanCheckout = true
-    }
-
     steps {
         gradle {
             tasks = "clean build"
@@ -106,23 +79,16 @@ object TodoApp : BuildType({
 
 object TodoImage : BuildType({
     name = "TodoImage"
-
-    vcs {
-        cleanCheckout = true
-    }
-
     steps {
         dockerCommand {
             commandType = build {
-                source = path {
+                source = file {
                     path = "./docker/Dockerfile"
                 }
                 contextDir = "."
-                namesAndTags = "sampleapp/todo-backend:%build.number%"
+                namesAndTags = "mkjetbrains/todo-backend:%build.number%"
                 commandArgs = "--pull"
             }
         }
     }
-
- 
 })
