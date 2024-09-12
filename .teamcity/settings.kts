@@ -73,6 +73,8 @@ object TodoApp : BuildType({
     steps {
         gradle {
             tasks = "clean build"
+            buildFile = ""
+            gradleWrapperPath = ""
             gradleParams = "-Dorg.gradle.java.home=%env.JDK_11_0%"
         }
     }
