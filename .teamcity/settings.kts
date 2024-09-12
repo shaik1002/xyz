@@ -1,9 +1,4 @@
 import jetbrains.buildServer.configs.kotlin.*
-import jetbrains.buildServer.configs.kotlin.BuildStep
-import jetbrains.buildServer.configs.kotlin.CompoundParam
-import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
-import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
-import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
 
 /*
