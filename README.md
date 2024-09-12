@@ -13,7 +13,7 @@ Tutorials that use this project:
 * SpringBoot 2.7.18
 * Gradle 7.6.2
 * JUnit Jupiter 5.7.0
-* Docker connection (optional, to push built images)
+* DockerHub connection (optional, to push built images)
 
 ## Overview
 
