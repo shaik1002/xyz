@@ -1,7 +1,10 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '1.5.7.RELEASE'
+    id 'org.springframework.boot' version '2.5.0'
 }
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
 
 ext {
     buildNumber = System.env.BUILD_NUMBER ?: 'dev'
@@ -13,17 +16,18 @@ jar {
 }
 
 repositories {
+    mavenCentral()
     jcenter()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-data-rest")
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
-    compile "org.springframework.boot:spring-boot-starter-actuator"
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-data-rest")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 //apply from: "docker.gradle"
