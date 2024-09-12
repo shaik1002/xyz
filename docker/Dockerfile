@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11
+FROM openjdk:8u131-jre-alpine
 COPY ./build/libs/todo.jar /app/todo.jar
 CMD ["java", "-jar", "/app/todo.jar"]
 EXPOSE 8080
