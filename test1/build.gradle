@@ -3,7 +3,7 @@ plugins {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 sourceCompatibility = 11
@@ -17,3 +17,4 @@ test {
     useJUnitPlatform()
 }
 //apply from: "docker.gradle"
+
