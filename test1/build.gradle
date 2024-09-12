@@ -10,7 +10,7 @@ sourceCompatibility = 11
 targetCompatibility = 11
 
 dependencies {
-    testCompile('junit:junit:5.11')
+    testImplementation('junit:junit:5.11')
 }
 
 test {
