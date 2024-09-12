@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.5.0'
+    id 'org.springframework.boot' version '2.7.18'
 }
 
 apply plugin: 'java'
@@ -10,14 +10,16 @@ ext {
     buildNumber = System.env.BUILD_NUMBER ?: 'dev'
 }
 
-jar {
-    archiveBaseName = 'todo'
-//    version = buildNumber
+bootJar {
+    archiveFileName = "todo.jar"
+}
+
+tasks.named("jar") {
+    enabled = false
 }
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 sourceCompatibility = 11
@@ -30,4 +32,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
+
+test {
+    useJUnitPlatform()
+}
 //apply from: "docker.gradle"
