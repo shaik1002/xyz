@@ -1,8 +1,7 @@
-import jetbrains.buildServer.configs.kotlin.v2018_2.*
-import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.dockerCommand
-import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.gradle
-import jetbrains.buildServer.configs.kotlin.v2018_2.triggers.vcs
-import jetbrains.buildServer.configs.kotlin.v2018_2.vcs.GitVcsRoot
+import jetbrains.buildServer.configs.kotlin.*
+import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
+import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
+
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -26,7 +25,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2023.05"
+version = "2024.07"
 
 project {
 
@@ -36,8 +35,6 @@ project {
 
 object TodoBackend : Project({
     name = "TodoBackend"
-
-    vcsRoot(TodoBackendVcs)
 
     buildType(Test2)
     buildType(TestReport)
@@ -50,8 +47,6 @@ object Test1 : BuildType({
     name = "Test1"
 
     vcs {
-        root(TodoBackendVcs, "+:test1=>.")
-
         cleanCheckout = true
     }
 
@@ -68,8 +63,6 @@ object Test2 : BuildType({
     name = "Test2"
 
     vcs {
-        root(TodoBackendVcs, "+:test2=>.")
-
         cleanCheckout = true
     }
 
@@ -88,8 +81,6 @@ object TestReport : BuildType({
     type = BuildTypeSettings.Type.COMPOSITE
 
     vcs {
-        root(TodoBackendVcs)
-
         showDependenciesChanges = true
     }
 
@@ -101,8 +92,6 @@ object TodoApp : BuildType({
     artifactRules = "build/libs/todo.jar"
 
     vcs {
-        root(TodoBackendVcs, "-:docker")
-
         cleanCheckout = true
     }
 
@@ -118,8 +107,6 @@ object TodoImage : BuildType({
     name = "TodoImage"
 
     vcs {
-        root(TodoBackendVcs, "+:docker=>docker")
-
         cleanCheckout = true
     }
 
@@ -137,10 +124,4 @@ object TodoImage : BuildType({
     }
 
  
-})
-
-object TodoBackendVcs : GitVcsRoot({
-    name = "TodoBackendVcs"
-    url = "https://github.com/jetbrains/TodoApp-NoChain-KTS"
-    checkoutPolicy = AgentCheckoutPolicy.USE_MIRRORS
 })
