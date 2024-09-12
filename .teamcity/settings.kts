@@ -26,7 +26,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2019.1"
+version = "2023.05"
 
 project {
 
@@ -58,6 +58,7 @@ object Test1 : BuildType({
     steps {
         gradle {
             tasks = "test"
+            buildFile = "build.gradle"
         }
     }
 
@@ -75,6 +76,7 @@ object Test2 : BuildType({
     steps {
         gradle {
             tasks = "test"
+            buildFile = "build.gradle"
         }
     }
 
@@ -129,7 +131,7 @@ object TodoImage : BuildType({
                     path = "./docker/Dockerfile"
                 }
                 contextDir = "."
-                namesAndTags = "mkjetbrains/todo-backend:%build.number%"
+                namesAndTags = "sampleapp/todo-backend:%build.number%"
                 commandArgs = "--pull"
             }
         }
@@ -140,5 +142,6 @@ object TodoImage : BuildType({
 
 object TodoBackendVcs : GitVcsRoot({
     name = "TodoBackendVcs"
-    url = "https://github.com/mkjetbrains/TodoApp-NoChain-KTS"
+    url = "https://github.com/jetbrains/TodoApp-NoChain-KTS"
+    checkoutPolicy = AgentCheckoutPolicy.USE_MIRRORS
 })
