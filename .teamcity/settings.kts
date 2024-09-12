@@ -50,6 +50,7 @@ object Test1 : BuildType({
         gradle {
             tasks = "test"
             gradleParams = "-Dorg.gradle.java.home=%env.JDK_11_0%"
+            workingDir = "test1"
         }
     }
 })
@@ -63,6 +64,7 @@ object Test2 : BuildType({
         gradle {
             tasks = "test"
             gradleParams = "-Dorg.gradle.java.home=%env.JDK_11_0%"
+            workingDir = "test2"
         }
     }
 })
