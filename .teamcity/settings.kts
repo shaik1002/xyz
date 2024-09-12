@@ -70,6 +70,9 @@ object TestReport : BuildType({
 object TodoApp : BuildType({
     name = "TodoApp"
     artifactRules = "build/libs/todo.jar"
+    vcs {
+        root(DslContext.settingsRoot)
+    }
     steps {
         gradle {
             tasks = "clean build"
