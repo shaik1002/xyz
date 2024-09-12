@@ -43,7 +43,9 @@ object TodoBackend : Project({
 
 object Test1 : BuildType({
     name = "Test1"
-
+    vcs {
+        root(DslContext.settingsRoot)
+    }
     steps {
         gradle {
             tasks = "test"
@@ -54,6 +56,9 @@ object Test1 : BuildType({
 
 object Test2 : BuildType({
     name = "Test2"
+    vcs {
+        root(DslContext.settingsRoot)
+    }
     steps {
         gradle {
             tasks = "test"
