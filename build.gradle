@@ -16,6 +16,9 @@ repositories {
     google()
     mavenCentral()
     jcenter()
+    maven {
+        url 'https://repo.spring.io/libs-snapshot'
+    }
 }
 
 sourceCompatibility = 1.8
