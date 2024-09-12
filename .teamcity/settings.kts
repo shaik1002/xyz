@@ -47,7 +47,7 @@ object Test1 : BuildType({
     steps {
         gradle {
             tasks = "test"
-            buildFile = "build.gradle"
+            gradleParams = "-Dorg.gradle.java.home=%env.JDK_11_0%"
         }
     }
 })
@@ -57,7 +57,7 @@ object Test2 : BuildType({
     steps {
         gradle {
             tasks = "test"
-            buildFile = "build.gradle"
+            gradleParams = "-Dorg.gradle.java.home=%env.JDK_11_0%"
         }
     }
 })
