@@ -26,23 +26,23 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2024.03"
+version = "2024.07"
 
 project {
-    subProject(TodoBackend)
+    subProject(SubProject)
 }
 
-object TodoBackend : Project({
-    name = "TodoBackend"
-    buildType(Test1)
+object SubProject : Project({
+    name = "SubProject"
+    buildType(TestSuite1)
     buildType(TestReport)
-    buildType(Test2)
-    buildType(TodoApp)
-    buildType(TodoImage)
+    buildType(TestSuite2)
+    buildType(BuildApp)
+    buildType(BuildDockerImage)
 })
 
-object Test1 : BuildType({
-    name = "Test1"
+object TestSuite1 : BuildType({
+    name = "Test Suite 1"
     vcs {
         root(DslContext.settingsRoot)
     }
@@ -55,8 +55,8 @@ object Test1 : BuildType({
     }
 })
 
-object Test2 : BuildType({
-    name = "Test2"
+object TestSuite2 : BuildType({
+    name = "Test Suite 2"
     vcs {
         root(DslContext.settingsRoot)
     }
@@ -74,8 +74,8 @@ object TestReport : BuildType({
     type = BuildTypeSettings.Type.COMPOSITE
 })
 
-object TodoApp : BuildType({
-    name = "TodoApp"
+object BuildApp : BuildType({
+    name = "Build Application"
     artifactRules = "build/libs/todo.jar"
     vcs {
         root(DslContext.settingsRoot)
@@ -88,8 +88,8 @@ object TodoApp : BuildType({
     }
 })
 
-object TodoImage : BuildType({
-    name = "TodoImage"
+object BuildDockerImage : BuildType({
+    name = "Build Docker Image"
     vcs {
         root(DslContext.settingsRoot)
     }
