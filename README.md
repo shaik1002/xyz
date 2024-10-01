@@ -1,3 +1,5 @@
+# Sample Maven Pipeline (TeamCity Samples)
+
 This is a sample Java project for TeamCity.
 
 Tutorials that use this project:
