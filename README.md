@@ -32,7 +32,7 @@ Versioned settings stored in the `.teamcity` folder generate a TeamCity project 
 
 The `.teamcity` folder stores project settings in the [Kotlin DSL](https://www.jetbrains.com/help/teamcity/kotlin-dsl.html) format. When you create a new project from this sample repository, TeamCity detects these settings and presents you with the following options:
 
-![](tc-settings-import.png)
+![](https://github.com/JetBrains/Maven-Configuration-TeamCity-Samples/blob/master/tc-settings-import.png)
 
 * Import settings — automatically configure the TeamCity project using remote settings. Settings are applied only once, allowing you to freely modify the project afterward.
 
