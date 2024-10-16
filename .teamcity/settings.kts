@@ -63,7 +63,7 @@ object TestSuite2 : BuildType({
     steps {
         gradle {
             tasks = "test"
-            gradleParams = "-Dorg.gradle.java.home=%env.JDK_11_0%"
+            jdkHome = "%env.JDK_11%"
             workingDir = "test2"
         }
     }
@@ -83,7 +83,7 @@ object BuildApp : BuildType({
     steps {
         gradle {
             tasks = "clean build"
-            gradleParams = "-Dorg.gradle.java.home=%env.JDK_11_0%"
+            jdkHome = "%env.JDK_11%"
         }
     }
 })
