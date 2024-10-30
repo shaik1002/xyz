@@ -1,0 +1,18 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  image: gradle:latest
+  script:
+    - gradle build
+  artifacts:
+    paths:
+      - build/libs/
+
+test:
+  stage: test
+  image: gradle:latest
+  script:
+    - gradle test
