@@ -45,5 +45,6 @@ Choose option #1 or option #3 depending on a tutorial. Some tutorials guide you 
 Opt for option #2 only if your project targets a forked sample and TeamCity has write permissions to it. Without these permissions, TeamCity won’t be able to push updates, causing the UI to lock and preventing further edits to the project.
 
 ## Other Samples
+## Sample Commits
 
 * [Simple Maven application](https://github.com/JetBrains/Maven-Configuration-TeamCity-Samples)
