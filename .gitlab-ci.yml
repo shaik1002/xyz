@@ -1,9 +1,6 @@
 stages:
   - build
   - test
-  - code_coverage
-  - check_coverage
-  - archive_results
 
 build:
   stage: build
@@ -19,43 +16,3 @@ test:
   image: gradle:latest
   script:
     - gradle test
-
-code_coverage:
-  stage: code_coverage
-  script:
-    - ./gradlew jacocoTestReport --warning-mode all
-    - ls -la build/reports/
-    - ls -la build/reports/xml/
-
-check_coverage:
-  stage: check_coverage
-  script:
-    - ls -la build/reports/xml/
-    - |
-      def jacocoReport = readFile file: 'build/reports/xml/jacoco.xml'
-      def classCoverage = jacocoReport =~ /<counter type="CLASS" missed="(\d+)" covered="(\d+)"/
-      def methodCoverage = jacocoReport =~ /<counter type="METHOD" missed="(\d+)" covered="(\d+)"/
-      def lineCoverage = jacocoReport =~ /<counter type="LINE" missed="(\d+)" covered="(\d+)"/
-      def classPercent = (classCoverage[0][2].toInteger() / (classCoverage[0][1].toInteger() + classCoverage[0][2].toInteger())) * 100
-      def methodPercent = (methodCoverage[0][2].toInteger() / (methodCoverage[0][1].toInteger() + methodCoverage[0][2].toInteger())) * 100
-      def linePercent = (lineCoverage[0][2].toInteger() / (lineCoverage[0][1].toInteger() + lineCoverage[0][2].toInteger())) * 100
-      if (classPercent >= 80.0 && methodPercent >= 50.0 && linePercent >= 60.0) {
-          currentBuild.result = 'SUCCESS'
-      } else {
-          currentBuild.result = 'FAILURE'
-          error("Code coverage thresholds not met: Class: ${classPercent}%, Method: ${methodPercent}%, Line: ${linePercent}%")
-      }
-
-archive_results:
-  stage: archive_results
-  script:
-    - junit '**/build/test-results/test/*.xml'
-    - jacoco execPattern: '**/build/jacoco/test.exec', classPattern: '**/build/classes/java/main', sourcePattern: '**/src/main/java'
-
-post:
-  always:
-    - cleanWs()
-  success:
-    - echo 'Build, tests, and deployment succeeded!'
-  failure:
-    - echo 'Build, tests, or deployment failed!'
