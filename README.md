@@ -1,4 +1,5 @@
 # Gradle & Docker Pipeline (TeamCity Samples)
+checking the connection
 
 This is a sample Java project for TeamCity.
 
